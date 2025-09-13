@@ -8,7 +8,7 @@ package Model;
  *
  * @author Eve Dou
  */
-class Address {
+public class Address {
    String streetName;
    String unitName;
    String city;
