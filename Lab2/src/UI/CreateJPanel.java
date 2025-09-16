@@ -26,19 +26,55 @@ public class CreateJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        lblTitle = new javax.swing.JLabel();
+        lblDate = new javax.swing.JLabel();
+        lblTemperature = new javax.swing.JLabel();
+        lblBP = new javax.swing.JLabel();
+        lblPulse = new javax.swing.JLabel();
+        lblConscious = new javax.swing.JLabel();
+        fieldDate = new javax.swing.JTextField();
+        fieldTemperature = new javax.swing.JTextField();
+        fieldBP = new javax.swing.JTextField();
+        fieldPulse = new javax.swing.JTextField();
+
+        setBackground(new java.awt.Color(0, 102, 102));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblTitle.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
+        lblTitle.setText("Create Vital Sign");
+        add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
+
+        lblDate.setText("Date");
+        add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, -1, -1));
+
+        lblTemperature.setText("Temperature");
+        add(lblTemperature, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
+
+        lblBP.setText("Blood Pressure");
+        add(lblBP, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
+
+        lblPulse.setText("Pulse");
+        add(lblPulse, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, -1, -1));
+
+        lblConscious.setText("Conscious State");
+        add(lblConscious, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, -1, -1));
+        add(fieldDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+        add(fieldTemperature, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, -1));
+        add(fieldBP, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
+        add(fieldPulse, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField fieldBP;
+    private javax.swing.JTextField fieldDate;
+    private javax.swing.JTextField fieldPulse;
+    private javax.swing.JTextField fieldTemperature;
+    private javax.swing.JLabel lblBP;
+    private javax.swing.JLabel lblConscious;
+    private javax.swing.JLabel lblDate;
+    private javax.swing.JLabel lblPulse;
+    private javax.swing.JLabel lblTemperature;
+    private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }
