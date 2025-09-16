@@ -4,6 +4,9 @@
  */
 package UI;
 
+import Model.VitalSignHistory;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Eve Dou
@@ -13,8 +16,10 @@ public class CreateJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreateJPanel
      */
-    public CreateJPanel() {
+    VitalSignHistory history;
+    public CreateJPanel(VitalSignHistory vsh) {
         initComponents();
+        this.history = vsh;
     }
 
     /**
@@ -26,6 +31,7 @@ public class CreateJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         lblTitle = new javax.swing.JLabel();
         lblDate = new javax.swing.JLabel();
         lblTemperature = new javax.swing.JLabel();
@@ -34,39 +40,102 @@ public class CreateJPanel extends javax.swing.JPanel {
         lblConscious = new javax.swing.JLabel();
         fieldDate = new javax.swing.JTextField();
         fieldTemperature = new javax.swing.JTextField();
-        fieldBP = new javax.swing.JTextField();
+        fieldBp = new javax.swing.JTextField();
         fieldPulse = new javax.swing.JTextField();
+        btnYes = new javax.swing.JRadioButton();
+        btnNo = new javax.swing.JRadioButton();
+        btnSave = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 102, 102));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitle.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         lblTitle.setText("Create Vital Sign");
-        add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
+        add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, -1, -1));
 
         lblDate.setText("Date");
-        add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, -1, -1));
+        add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, -1, -1));
 
         lblTemperature.setText("Temperature");
-        add(lblTemperature, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
+        add(lblTemperature, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
 
         lblBP.setText("Blood Pressure");
-        add(lblBP, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
+        add(lblBP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
 
         lblPulse.setText("Pulse");
-        add(lblPulse, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, -1, -1));
+        add(lblPulse, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, -1, -1));
 
         lblConscious.setText("Conscious State");
-        add(lblConscious, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, -1, -1));
-        add(fieldDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
-        add(fieldTemperature, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, -1));
-        add(fieldBP, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
-        add(fieldPulse, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
+        add(lblConscious, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, -1));
+        add(fieldDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 80, -1));
+        add(fieldTemperature, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 80, -1));
+        add(fieldBp, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 80, -1));
+        add(fieldPulse, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 80, -1));
+
+        buttonGroup1.add(btnYes);
+        btnYes.setSelected(true);
+        btnYes.setText("Yes");
+        btnYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYesActionPerformed(evt);
+            }
+        });
+        add(btnYes, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, -1, -1));
+
+        buttonGroup1.add(btnNo);
+        btnNo.setText("No");
+        add(btnNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, -1, -1));
+
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnYesActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        String date = fieldDate.getText();
+        float temp = Float.parseFloat(fieldTemperature.getText());
+        double bp = Double.parseDouble(fieldBp.getText());
+        int pulse = Integer.parseInt(fieldPulse.getText());
+        boolean isConscious;
+        
+        if(btnYes.isSelected()){
+        isConscious = true;
+        }else{
+            isConscious = false;
+        }
+        
+        VitalSign vs = history.addNewVital();
+        vs.setDate(date);
+        vs.setTemperature(temp);
+        vs.setPulse(pulse);
+        vs.setIsConscious(isConscious);
+        
+        JOptionPane.showMessageDialog(this,"New VitalSign added","Success",JOptionPane.INFORMATION_MESSAGE);
+        
+        fieldDate.setText("");
+        fieldTemperature.setText("");
+        fieldBp.setText("");
+        fieldPulse.setText("");
+        
+        
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField fieldBP;
+    private javax.swing.JRadioButton btnNo;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JRadioButton btnYes;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextField fieldBp;
     private javax.swing.JTextField fieldDate;
     private javax.swing.JTextField fieldPulse;
     private javax.swing.JTextField fieldTemperature;
