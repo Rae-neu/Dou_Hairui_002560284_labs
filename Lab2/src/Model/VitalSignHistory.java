@@ -34,4 +34,8 @@ public class VitalSignHistory {
     public void deleteVitalSign(VitalSign hy){
      history.remove(hy); 
     }
+
+    public void deleteVital(VitalSign selectedVital) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
