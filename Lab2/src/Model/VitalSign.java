@@ -55,4 +55,8 @@ public class VitalSign {
         this.isConscious = isConscious;
     }
     
+    @Override
+    public String toString(){
+        return getDate();
+    }
 }

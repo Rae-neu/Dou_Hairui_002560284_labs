@@ -29,7 +29,7 @@ public class ViewJPanel extends javax.swing.JPanel {
            
            for(VitalSign vs: history.getHistory()){
                Object[] row = new Object[5];
-               row [0] = vs.getDate();
+               row [0] = vs;
                row [1] = vs.getTemperature();
                row [2] = vs.getBloodPressure();
                row [3] = vs.getPulse();
@@ -120,6 +120,11 @@ public class ViewJPanel extends javax.swing.JPanel {
         add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, -1, -1));
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -147,6 +152,25 @@ public class ViewJPanel extends javax.swing.JPanel {
             
         }
     }//GEN-LAST:event_btnViewActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tblVital.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(this,"Please select a row to delete","Warning",JOptionPane.WARNING_MEAASGE);
+        }
+        history.deleteVital(selectedVital);
+         JOptionPane.showMessageDialog(this,"Vital Sign deleted","Success",JOptionPane.INFORMATION_MESSAGE);
+         
+         populateTable();
+         fieldDate.setText("");
+         fieldTemperature.setText("");
+         fieldBp.setText("");
+         fieldPulse.setText("");
+         lblStatus.setText("");
+         
+        
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
