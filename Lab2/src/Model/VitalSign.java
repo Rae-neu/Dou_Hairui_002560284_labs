@@ -9,18 +9,18 @@ package Model;
  * @author Eve Dou
  */
 public class VitalSign {
-    String name;
+    String date;
     float temperature;
     double bloodPressure;
     int pulse;
     boolean isConscious;
 
-    public String getName() {
-        return name;
+    public String getDate() {
+        return date;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public float getTemperature() {

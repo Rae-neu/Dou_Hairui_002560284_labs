@@ -4,6 +4,7 @@
  */
 package UI;
 
+import Model.VitalSign;
 import Model.VitalSignHistory;
 import javax.swing.JOptionPane;
 

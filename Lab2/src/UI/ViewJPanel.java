@@ -6,6 +6,7 @@ package UI;
 
 import Model.VitalSign;
 import Model.VitalSignHistory;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -132,7 +133,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRow = tblVital.getSelectedRow();
         if (selectedRow<0){
-            JOptionPane.showMessageDialog(this,"Please select a row to view","Warning",JOptionPane.WARRING_MESSAGE);
+        JOptionPane.showMessageDialog(this,"Please select a row to view","Warning",JOptionPane.WARNING_MESSAGE);
             
         }
         DefaultTableModel model = (DefaultTableModel)tblVital.getModel();
@@ -157,8 +158,12 @@ public class ViewJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRow = tblVital.getSelectedRow();
         if(selectedRow<0){
-            JOptionPane.showMessageDialog(this,"Please select a row to delete","Warning",JOptionPane.WARNING_MEAASGE);
+        JOptionPane.showMessageDialog(this,"Please select a row to delete","Warning",JOptionPane.WARNING_MESSAGE);
         }
+        
+        DefaultTableModel model = (DefaultTableModel)tblVital.getModel();
+        VitalSign selectedVital = (VitalSign)model.getValueAt(selectedRow,0);
+        
         history.deleteVital(selectedVital);
          JOptionPane.showMessageDialog(this,"Vital Sign deleted","Success",JOptionPane.INFORMATION_MESSAGE);
          
