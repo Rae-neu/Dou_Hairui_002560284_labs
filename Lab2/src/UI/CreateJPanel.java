@@ -104,7 +104,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String date = fieldDate.getText();
         float temp = Float.parseFloat(fieldTemperature.getText());
-        double bp = Double.parseDouble(fieldBp.getText());
+        double bloodPressure = Double.parseDouble(fieldBp.getText());
         int pulse = Integer.parseInt(fieldPulse.getText());
         boolean isConscious;
         
@@ -117,6 +117,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         VitalSign vs = history.addNewVital();
         vs.setDate(date);
         vs.setTemperature(temp);
+        vs.setBloodPressure(bloodPressure);
         vs.setPulse(pulse);
         vs.setIsConscious(isConscious);
         

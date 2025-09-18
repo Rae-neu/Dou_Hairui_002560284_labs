@@ -77,7 +77,7 @@ public class ViewJPanel extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -157,14 +157,14 @@ public class ViewJPanel extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int selectedRow = tblVital.getSelectedRow();
-        if(selectedRow<0){
+        if(selectedRow < 0){
         JOptionPane.showMessageDialog(this,"Please select a row to delete","Warning",JOptionPane.WARNING_MESSAGE);
         }
         
         DefaultTableModel model = (DefaultTableModel)tblVital.getModel();
         VitalSign selectedVital = (VitalSign)model.getValueAt(selectedRow,0);
         
-        history.deleteVital(selectedVital);
+        history.deleteVitalSign(selectedVital);
          JOptionPane.showMessageDialog(this,"Vital Sign deleted","Success",JOptionPane.INFORMATION_MESSAGE);
          
          populateTable();
