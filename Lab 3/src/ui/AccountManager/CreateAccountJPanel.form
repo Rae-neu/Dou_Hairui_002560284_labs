@@ -35,13 +35,11 @@
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnCreate" pref="130" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtAccountNumber" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtRoutingNumber" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtBankName" max="32767" attributes="0"/>
-                      <Component id="txtBalance" pref="130" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtAccountNumber" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtRoutingNumber" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtBankName" max="32767" attributes="0"/>
+                  <Component id="txtBalance" pref="130" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="189" max="32767" attributes="0"/>
           </Group>

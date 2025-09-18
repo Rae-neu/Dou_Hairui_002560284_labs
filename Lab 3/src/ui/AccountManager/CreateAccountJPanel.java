@@ -20,10 +20,10 @@ public class CreateAccountJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreateAccountJPanel
      */
-    public CreateAccountJPanel(JPanel container, AccountDirectory directory) {
+    public CreateAccountJPanel(JPanel userProcessContainer, AccountDirectory accountDirectory) {
         initComponents();
-        userProcessContainer = container;
-        accountDirectory = directory;
+        this.userProcessContainer = userProcessContainer;
+        this.accountDirectory = accountDirectory;
     }
 
     /**
@@ -96,12 +96,11 @@ public class CreateAccountJPanel extends javax.swing.JPanel {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnCreate, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lblTitle)
-                        .addComponent(txtAccountNumber)
-                        .addComponent(txtRoutingNumber)
-                        .addComponent(txtBankName)
-                        .addComponent(txtBalance, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
+                    .addComponent(lblTitle)
+                    .addComponent(txtAccountNumber)
+                    .addComponent(txtRoutingNumber)
+                    .addComponent(txtBankName)
+                    .addComponent(txtBalance, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
                 .addContainerGap(189, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

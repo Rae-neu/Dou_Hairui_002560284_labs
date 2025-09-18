@@ -4,17 +4,30 @@
  */
 package ui.AccountManager;
 
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Eve Dou
  */
 public class ViewAccountJPanel extends javax.swing.JPanel {
+    
+    private JPanel userProcessContainer;
+    private AccountDirectory accountDirectory;
+    private Account account;
 
     /**
      * Creates new form ViewAccountJPanel
      */
-    public ViewAccountJPanel() {
+    public ViewAccountJPanel(JPanel userProcessContainer,AccountDirectory directory,Account account) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        
+        refreshTextFields();
+        setViewMode();
     }
 
     /**
@@ -140,6 +153,7 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        setEditMode();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void txtRoutingNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRoutingNumberActionPerformed
@@ -148,6 +162,15 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        Component[]panelStack = userProcessContainer.getComponents();
+        JPanel lastPanel = (JPanel) panelStack[panelStack.length - 1];
+        ManageAccountsJPanel manageAccountJPanel = (ManageAccountsJPanel) lastPanel;
+        manageAccountJPanel.populateTable();
+        
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        
         
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -164,4 +187,25 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtBankName;
     private javax.swing.JTextField txtRoutingNumber;
     // End of variables declaration//GEN-END:variables
+
+    private void refreshTextFields(){
+        txtRoutingNumber.setText(account.getRountingNumber());
+        txtAccountNumber.setText(account.getAccountNumber());
+        txtBankName.setText(account.getBankName());
+        
+    }
+    private void setViewMode(){
+    txtRoutingNumber.setEnabled(false);
+    txtAccountNumber.setEnabled(false);
+    txtBankName.setEnabled(false);
+    
+    btnSave.setEnabled(false);
+    btnUpdate.setEnabled(true);
+    }
+    
+    private void setEditMode(){
+        txtRoutingNumber.setEnabled(true);
+        txtAccountNumber.setEnabled(true);
+        txtBankName.setEnabled(true);
+    }
 }
