@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author Eve Dou
  */
+//extends javax.swing.JPanel 说明这个类是一个面板（JPanel），能放在窗口里使用。
 public class CreateJPanel extends javax.swing.JPanel {
 
     /**

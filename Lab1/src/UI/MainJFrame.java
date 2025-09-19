@@ -4,6 +4,7 @@
  */
 package UI;
 
+//引入Product类，这样在界面中就可以使用Product对象。
 import Model.Product;
 
 /**
@@ -17,10 +18,14 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
+//声明了一个成员变量叫product，类型是Product。
     Product product;
     public MainJFrame() {
+//构造方法在new MainJFrame()时会自动执行。
         initComponents();
+//初始化界面
         product = new Product();
+//系统生成一个空的Product对象，保证一打开界面，就有一个Product数据可以使用。以后所有Create、View面板操作的就是这个对象。
     }
 
     /**
@@ -99,14 +104,18 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
+//新建一个CreateJPanel面板，在构造方法里把product传进去，这样CreateJPanle内部就拿到了同一个product对象。
         CreateJPanel createJPanel = new CreateJPanel(product);
         splitPane.setRightComponent(createJPanel);
+//把面板显示在右边。
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
+//新建一个ViewJPanel面板，也传入同一个product对象。
         ViewJPanel viewJPanel = new ViewJPanel(product);
         splitPane.setRightComponent(viewJPanel);
+//面板放在右边的工作区。
         
     }//GEN-LAST:event_btnViewActionPerformed
 
