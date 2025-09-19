@@ -235,5 +235,8 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
         txtRoutingNumber.setEnabled(true);
         txtAccountNumber.setEnabled(true);
         txtBankName.setEnabled(true);
+        
+        btnSave.setEnabled(true);
+        btnUpdate.setEnabled(false);
     }
 }
