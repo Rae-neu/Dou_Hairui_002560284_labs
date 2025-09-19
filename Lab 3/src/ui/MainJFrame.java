@@ -138,13 +138,13 @@ public class MainJFrame extends javax.swing.JFrame {
     private void generateDemoData() {
     Account newAccount = accountDirectory.addAccount();
     newAccount.setAccountNumber("6666666666");
-    newAccount.setRountingNumber("1234567890");
+    newAccount.setRoutingNumber("1234567890");
     newAccount.setBankName("Bank of America");
     newAccount.setBalance(200);
     
     Account anotherNewAccount = accountDirectory.addAccount();
     anotherNewAccount.setAccountNumber("88888888");
-    anotherNewAccount.setAccountNumber("0987654321");
+    anotherNewAccount.setRoutingNumber("0987654321");
     anotherNewAccount.setBankName("Santander Bank");
     anotherNewAccount.setBalance(1200);
     

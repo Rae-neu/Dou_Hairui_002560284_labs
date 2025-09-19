@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package ui.AccountManager;
 
 import java.awt.CardLayout;
@@ -10,10 +6,16 @@ import javax.swing.JPanel;
 import model.Account;
 import model.AccountDirectory;
 
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
+
 /**
  *
  * @author Eve Dou
  */
+
 public class CreateAccountJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     AccountDirectory accountDirectory;
@@ -162,7 +164,7 @@ public class CreateAccountJPanel extends javax.swing.JPanel {
             return;
         }
           Account a = accountDirectory.addAccount();
-          a.setRountingNumber(routingNumber);
+          a.setRoutingNumber(routingNumber);
           a.setAccountNumber(accountNumber);
           a.setBankName(bankName);
           a.setBalance(balance);
@@ -174,7 +176,7 @@ public class CreateAccountJPanel extends javax.swing.JPanel {
           txtBankName.setText("");
           txtBalance.setText("");
             
-        }
+        
     }//GEN-LAST:event_btnCreateActionPerformed
 
 

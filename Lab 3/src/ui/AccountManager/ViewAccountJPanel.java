@@ -6,7 +6,10 @@ package ui.AccountManager;
 
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Account;
+import model.AccountDirectory;
 
 /**
  *
@@ -24,6 +27,7 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
     public ViewAccountJPanel(JPanel userProcessContainer,AccountDirectory directory,Account account) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
+        this.accountDirectory = directory;
         this.account = account;
         
         refreshTextFields();
@@ -78,6 +82,11 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
         });
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -174,6 +183,25 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        String routingNumber = txtRoutingNumber.getText();
+        String accountNumber = txtAccountNumber.getText();
+        String bankName = txtBankName.getText();
+        
+        if(routingNumber.isBlank() || accountNumber.isBlank() ||bankName.isBlank())
+        {
+            JOptionPane.showMessageDialog(null,"All field are mandatory.");
+            return;
+        }
+        account.setRoutingNumber(routingNumber);
+        account.setAccountNumber(accountNumber);
+        account.setBankName(bankName);
+        
+        JOptionPane.showMessageDialog(null,"Account successfully updated.","Warning",JOptionPane.WARNING_MESSAGE);
+        setViewMode();
+    }//GEN-LAST:event_btnSaveActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -189,7 +217,7 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void refreshTextFields(){
-        txtRoutingNumber.setText(account.getRountingNumber());
+        txtRoutingNumber.setText(account.getRoutingNumber());
         txtAccountNumber.setText(account.getAccountNumber());
         txtBankName.setText(account.getBankName());
         

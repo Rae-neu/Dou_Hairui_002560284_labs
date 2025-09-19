@@ -10,7 +10,7 @@ package model;
  */
 public class Account {
     String bankName;
-    String rountingNumber;
+    String routingNumber;
     String accountNumber;
     int balance;
 // alt+ins - getter and setter
@@ -22,12 +22,12 @@ public class Account {
         this.bankName = bankName;
     }
 
-    public String getRountingNumber() {
-        return rountingNumber;
+    public String getRoutingNumber() {
+        return routingNumber;
     }
 
-    public void setRountingNumber(String rountingNumber) {
-        this.rountingNumber = rountingNumber;
+    public void setRoutingNumber(String routingNumber) {
+        this.routingNumber = routingNumber;
     }
 
     public String getAccountNumber() {

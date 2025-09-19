@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class AccountDirectory {
 //alt+enter - import
-    ArrayList<Account>accounts;
+    private ArrayList<Account>accounts;
 
 public AccountDirectory(){
     this.accounts = new ArrayList<>();
@@ -35,5 +35,14 @@ public AccountDirectory(){
     
     public void deleteAccount(Account account){
         accounts.remove(account);
+    }
+    
+    public Account searchAccount(String accountNumber){
+        for(Account a: accounts){
+            if (a.getAccountNumber().contains(accountNumber)){
+                return a;
+            }
+        }
+        return null;
     }
 }
