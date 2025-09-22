@@ -18,14 +18,20 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
-//声明了一个成员变量叫product，类型是Product。
+
+//声明了一个成员变量叫product，类型是Product，用来保存产品数据。
     Product product;
+// ↑ 作用：这个变量用来存放一个“产品对象”，让整个MainJFrame窗口和它下面的Create面板、View面板能共享同一个产品数据。
     public MainJFrame() {
-//构造方法在new MainJFrame()时会自动执行。
+//构造方法在new MainJFrame()时会自动执行，作用：当窗口对象第一次创建时，做一些初始化工作。
         initComponents();
 //初始化界面
         product = new Product();
-//系统生成一个空的Product对象，保证一打开界面，就有一个Product数据可以使用。以后所有Create、View面板操作的就是这个对象。
+//真正创建了一个新的产品对象。
+//相当于在内存里开辟了一个空间，里面有name,price...属性。
+//然后把这个对象赋值给成员变量prodcuct，让主窗口可以随时访问它。
+
+//综上：当新建 MainJFrame 窗口时，初始化界面并创建一个 Product 对象，用来存储产品信息，供不同面板共享使用。
     }
 
     /**

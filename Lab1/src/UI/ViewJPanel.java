@@ -15,18 +15,29 @@ public class ViewJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewJPanel
      */
+    //成员变量，保存从MainJFrame传进来的Product对象。它不是新建对象，而是指向同一个已经存在的Product。
     Product product;
+    //Product p是从外面传进来的对象，是MainJFrame创建好的product。
     public ViewJPanel(Product p) {
         initComponents();
+    //把传进来的对象p，赋值给ViewJPanel内部的成员变量product。
         product = p;
+    //调用display方法，这样创建一个新的ViewJPanel面板时，系统会自动执行display()方法。
+    //这样界面一打开，就会把product对象里的数据展示在输入框里，而不是空白。
         display();
     }
     private void display() {
+        //product.getName()→调用Product类的getter方法，取出产品名字。
+        //fieldName.setText()→把名字显示在界面的文本框fieldNamel里。
         fieldName.setText(product.getName());
         fieldDescription.setText(product.getDescription());
         fieldAvailability.setText(product.getAvailNum());
         fieldprice.setText(product.getPrice());
         
+        //product是指Product对象（在MainJFrame创建并传过来的）。
+        //product.getManufactureAddress()是指从这个Product对象里拿到它的manufactureAddress(类型是Address)。
+        //.getStreetName()是指再从这个Address对象里，取出街道名（String）。
+        //fieldManuStreet.setText(...)把这个字符串填入到文本框内。
         fieldManuStreet.setText(product.getManufactureAddress().getStreetName());
         fieldManuUnit.setText(product.getManufactureAddress().getUnitName());
         fieldManuCity.setText(product.getManufactureAddress().getCity());

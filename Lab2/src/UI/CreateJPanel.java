@@ -12,12 +12,16 @@ import javax.swing.JOptionPane;
  *
  * @author Eve Dou
  */
+//声明一个类，名字叫CreateJPanel。
 public class CreateJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form CreateJPanel
      */
+    //声明一个变量 history，这个变量的类型是VitalSignHistory。
     VitalSignHistory history;
+    //在CreateJPanel这个类的构造方法里，声明了一个参数变量，这个参数的类型是VitalSignHistory。它用来接收外部传进来的对象。
+    //把外部传进来的对象vsh赋值给CreateJPanel类里的成员变量history。
     public CreateJPanel(VitalSignHistory vsh) {
         initComponents();
         this.history = vsh;
@@ -100,29 +104,58 @@ public class CreateJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnYesActionPerformed
 
+    
+    //private权限修饰符，表示这个方法只能在当前类用。
+    //void返回值类型，这里是空，表示这个方法不返回任何结果。
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        //从日期输入框里拿出用户写的日期，并保存到date变量里。
         String date = fieldDate.getText();
         float temp = Float.parseFloat(fieldTemperature.getText());
         double bloodPressure = Double.parseDouble(fieldBp.getText());
         int pulse = Integer.parseInt(fieldPulse.getText());
         boolean isConscious;
         
+        
+        //btnYes.isSelected()是检查Yes单选按钮是不是被选中。
+        //if(...){...}else{...}指如果条件成立，就执行大括号里的代码。否则执行else代码。
+        //isConsicous = true; 如果Yes被选中，就把isConscious设为true。
+        //isConsicous = false;如果Yes没被选，就把isConsicous设为false。
         if(btnYes.isSelected()){
         isConscious = true;
         }else{
             isConscious = false;
         }
         
+        //在历史记录里加一条新数据，并把它取出来，命名为vs。
+        //VitalSign vs定义一个VitalSign类型的变量vs，表示一条体征数据。
+        //history是VitalSignHistory的对象。
+        //.addNewVital()是方法，在history里新建一条空的记录，并返回这个新对象vs。
         VitalSign vs = history.addNewVital();
+        //给新体征对象赋值，每一行调用的都是setter方法，把刚才从输入框拿到的数据存入到vs。
+        //作用：把用户填写的所有数据写进新建的那条体征记录里。
         vs.setDate(date);
         vs.setTemperature(temp);
         vs.setBloodPressure(bloodPressure);
         vs.setPulse(pulse);
         vs.setIsConscious(isConscious);
         
+        //弹出一个提示框，告诉用户“数据保存成功”。
+        //JOptionPane是Swing提供的一个对话框工具类。
+        //.showMessageDialog()方法名。参数顺序：父组件（谁弹）→弹窗正文（弹什么）→弹窗标题（标题是什么）→弹窗样式（用哪种图标）
+        //this，当前面板CreateJPanel。
+        //“New VitalSign added”弹窗正文。
+        //“Success”弹窗标题，显示在窗口标题栏上。
+        //JOptionPane.INFORMATION_MESSAGE→弹窗样式，显示一个蓝色的“i”信息图标。表示提示/告知用户。
+        //JOptionPane.WARNING_MESSAGE→黄色三角形，表示警告。
+        //JOptionPane.ERROR_MESSAGE→红色叉号，表示错误。
+        //JOptionPane.QUESTION_MESSAGE→问号，表示需要用户确认（Yes/No）。
+        //JOptionPane.JOptionPane.PLAIN_MEAASGE→没有图标，纯文字对话框。
         JOptionPane.showMessageDialog(this,"New VitalSign added","Success",JOptionPane.INFORMATION_MESSAGE);
         
+        //把文本输入框清空。
+        //.setText(...);设置文本框里要显示的内容。
+        // ""是空字符串，什么都没有。
         fieldDate.setText("");
         fieldTemperature.setText("");
         fieldBp.setText("");

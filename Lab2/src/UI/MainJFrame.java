@@ -10,6 +10,7 @@ import Model.VitalSignHistory;
  *
  * @author Eve Dou
  */
+//声明一个类，名字叫MainJFrame。
 public class MainJFrame extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainJFrame.class.getName());
@@ -17,6 +18,11 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
+    //定义了一个变量history，类型是VitalSignHistory。作用：储存所有的VitalSign。
+    //public MainJFrame()构造方法，当你new MainJFrame()时自动执行。
+    //new VitalSignHistory()的意思是根据VitalSignHistory这个蓝图，造一个新的对象，并执行它的构造方法。
+    //history=...这里的history是我在MainJFrame里定义的成员变量。
+    //所以 history = new VitalSignHistory();把造好的对象交给变量history保存。
     VitalSignHistory history;
     public MainJFrame() {
         initComponents();
@@ -104,10 +110,23 @@ public class MainJFrame extends javax.swing.JFrame {
         splitPane.setRightComponent(viewJPanel);
     }//GEN-LAST:event_btnViewActionPerformed
 
+    
+    //private只能在当前类使用。
+    //void方法没有返回值。
+    //btnCreateActionPerformed是方法名字。
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
+        //左侧的CreateJPanel是一个类，我写的界面类，用来输入体征数据。
+        //createJPanel是一个变量名，用来保存新建的面板对象。
+        // = new CreateJPanel(history); new在内存里造一个新的CreateJPanel界面。
+        // CreateJPanel(...)调用它的构造方法。
+        // (history)把history传进去，让Create面板知道往哪里保存数据。
+        // 综上，造一个新的录入界面，并把history传进去，这样就可以把新录入的体征数据保存到history里。
         CreateJPanel createJPanel = new CreateJPanel(history);
+        //splitPane分割面板，左边按钮区，右边工作区。
+        //setRightComponent(...)把右边的区域内容换成新造的createJPanel界面。
         splitPane.setRightComponent(createJPanel);
+        //综上，把刚造的录入界面放到右边显示出来。
     }//GEN-LAST:event_btnCreateActionPerformed
 
     /**

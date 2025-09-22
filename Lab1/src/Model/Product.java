@@ -16,6 +16,7 @@ public class Product {
     String availNum;
     String price;
     Address manufactureAddress;
+//↑这行代码表示：每一个Product对象都有一个生产地址manufactureAddress，而这个生产地址本身是一个Address类的对象。
     Address shippingAddress;
 //因为产品具有“地址”属性，“地址”本身是一个独立的类，所以用组合的形式包含进来。
 //好处：①Address可以被多个类使用。 ②结构清晰，Product负责产品，Address负责地址。③更改地址信息，只需要改Address类。
@@ -62,6 +63,9 @@ public class Product {
         this.price = price;
     }
 
+    //getManufactureAddress是方法名，表示“获取生产地址”。
+    //返回值：Address意味着这个方法会“返回一个Address类型的对象”。
+    //方法体：return manufactureAddress;是把manufactureAddress这个变量返回出去。
     public Address getManufactureAddress() {
         return manufactureAddress;
     }

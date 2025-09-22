@@ -17,10 +17,14 @@ public class CreateJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreateJPanel
      */
+//存放一个Product对象。
+//构造方法参数→Product p，暂时接收MainJFrame传进来的product对象：当在MainJFrame里写CreateJPanel createJPanel = new CreateJPanel(product);
+//product = p,把参数存放到成员变量里，以便整个面板都可以使用。
     Product product;
     public CreateJPanel(Product p) {
         initComponents();
         product = p;
+//综上 CreateJPael可以直接操作主窗口里的product对象。
     }
 
     /**
@@ -290,11 +294,16 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        //把用户在输入框里写的内容读取出来，用到.getText()的方法。
         String name = fieldName.getText();
         String description = fieldDescription.getText();
         String avail = fieldAvailability.getText();
         String price = fieldprice.getText();
         
+        //用户输入→局部变量
+        //fieldManuStreet是界面上一个文本框。
+        //.getText()是取出用户在文本框里输入的内容。
+        //然后再将这个值存到局部变量manuStreet里。
         String manuStreet = fieldManuStreet.getText();
         String manuUnit = fieldManuUnit.getText();
         String manuCity = fieldManuCity.getText();
@@ -305,23 +314,35 @@ public class CreateJPanel extends javax.swing.JPanel {
         String shippingCity = fieldShippingCity.getText();
         String shippingZipCode = fieldShippingZipcode.getText();
         
+        //再把读取到的数据存放到product对象里。
         product.setName(name);
         product.setDescription(description);
         product.setAvailNum(avail);
         product.setPrice(price);
         
+        //product是Product类的对象。
+        //getManufactureAddress()是Product类里的getter方法。
+        //product.getManufactureAddress()→从这个Product里取出manufactureAddress(类型是Address对象)。
+        //setStreetName是Address类里的setter方法。
+        //把参数manuStreet（用户输入的值）赋给Address里的streetName属性。
         product.getManufactureAddress().setStreetName(manuStreet);
         product.getManufactureAddress().setUnitName(manuUnit);
         product.getManufactureAddress().setCity(manuCity);
         product.getManufactureAddress().setZipCode(manuZipcode);
+        //综上：把用户输入的 manuStreet 文本存到 product 里的 manufactureAddress 这个 Address 对象的 streetName 属性里。
         
         product.getShippingAddress().setStreetName(shippingStreet);
         product.getShippingAddress().setUnitName(shippingUnit);
         product.getShippingAddress().setCity(shippingCity);
         product.getShippingAddress().setZipCode(shippingZipCode);
         
+        //JOptionPane是对话框工具类，用来弹出提示框、输入框、确认框。
+        //.showMessageDialog(...)是JOptionPane的静态方法，意思“显示一个消息提示框”。它可以穿几个参数：①父组件（用来决定对话框显示在谁的上面）②要显示的文字
+        //this代表当前的面板对象CreateJPanel,表示提示框会显示在这个面板上方。
+        //“Successfully Saved！”是提示框里显示的文字内容。
         JOptionPane.showMessageDialog(this,"Successfully Saved!");
         
+        //.setText("");把文本框的内容设置成空字符串""。
         fieldName.setText("");
         fieldDescription.setText("");
         fieldAvailability.setText("");
@@ -334,6 +355,8 @@ public class CreateJPanel extends javax.swing.JPanel {
         fieldShippingUnit.setText("");
         fieldShippingCity.setText("");
         fieldShippingZipcode.setText("");
+        
+     
         
         
                 

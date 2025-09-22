@@ -9,23 +9,40 @@ import Model.VitalSignHistory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+
+//ViewJPanel界面的功能：①显示（表格+文本框）所有录入过的体征数据。②提供View和Delete按钮。
+//逻辑：从history里取出数据→填进表格→用户选择某一行→查看/删除。
 /**
  *
  * @author Eve Dou
  */
+//声明一个类，名字叫ViewJPanel。
 public class ViewJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewJPanel
      */
+    //声明ViewJPanel这个类下的成员变量history，变量的类型是VitalSignHistory。
     VitalSignHistory history;
+    //调用ViewJPanel的构造方法，里面的参数是vsh，参数类型是VitalSignHistory→说明这个构造方法必须接收一个VitalSignHistory类型的对象。
+    //把接收到的参数vsh赋值给ViewJPanel类下的成员变量history。
+    //populateTable();作用是刷新并填充表格，把history里存的数据展示出来。没有这句，表格是空的。
     public ViewJPanel(VitalSignHistory vsh) {
         initComponents();
         this.history = vsh;
         populateTable();
     }
+    
+    //tblVital是我界面里的表格控件（JTabel）。
+    //表格控件（JTable）里真正存数据的地方叫表格模型(TableModel)。.getModel();就是把这个表格的数据模型取出来。
+    //tblVital.getModel()返回的类型是TableModel（一个接口，比较泛的表格模型）。
+    //(DefaultTableModel)是类型强制转换，把它“转型”，这样才能用 DefaultTableModel的方法。
+    //DefaultTableModel model = ...即定义一个变量model，它的类型是DefaultTableModel。
+    //这样就可以用model来操作表格里的数据（增加一行、清空表格...）
+    //综上：把表格的数据管理器取出来，装到一个变量model里。
        private void populateTable() {
            DefaultTableModel model = (DefaultTableModel)tblVital.getModel();
+           //
            model.setRowCount(0);
            
            for(VitalSign vs: history.getHistory()){
