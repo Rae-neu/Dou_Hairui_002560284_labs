@@ -102,6 +102,12 @@ public class CreateJPanel extends javax.swing.JPanel {
 
         lblManuZipcode.setText("Zip Code");
 
+        fieldManuStreet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldManuStreetActionPerformed(evt);
+            }
+        });
+
         fieldManuCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldManuCityActionPerformed(evt);
@@ -366,6 +372,10 @@ public class CreateJPanel extends javax.swing.JPanel {
         
         
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void fieldManuStreetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldManuStreetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldManuStreetActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
