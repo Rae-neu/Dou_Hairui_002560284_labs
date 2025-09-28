@@ -25,7 +25,9 @@ public class ProductCatalog {
    } 
    
    public Product addProduct(){
-    /*创建一个新的产品对象p，把p放进productCatalog列表里。
+    /*创建一个新的产品对象p，把p放进product
+   public Product addProduct(){
+    /*创建一个新的产品对象p，把p放进prCatalog列表里。
       把p返回给调用者，方便外面继续对它设置属性。*/
         Product p = new Product();
         productCatalog.add(p);

@@ -4,19 +4,27 @@
  */
 package UI.user;
 
+import Model.SupplierDirectory;
+import java.awt.CardLayout;
+
 /**
  *
  * @author Eve Dou
  */
 public class MainJFrame extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainJFrame.class.getName());
-
+    //在主窗口保存一份SupplierDirectory。
+    private SupplierDirectory supplierDirectory;
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
+    //创建一个新的、空的供应商目录对象。
+        supplierDirectory = new SupplierDirectory();
+        setSize(700,700);
+        setResizable(false);
+    //启动程序时，加载并显示登录界面。
+        setLoginScreen();
     }
 
     /**
@@ -28,17 +36,46 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jPanel1 = new javax.swing.JPanel();
+        mainWorkArea = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jSplitPane1.setLeftComponent(jPanel1);
+
+        mainWorkArea.setBackground(new java.awt.Color(204, 204, 255));
+        mainWorkArea.setLayout(new java.awt.CardLayout());
+        jSplitPane1.setRightComponent(mainWorkArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
         );
 
         pack();
@@ -69,6 +106,21 @@ public class MainJFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new MainJFrame().setVisible(true));
     }
 
+    private void setLoginScreen() {
+    /*创建登录界面，并把共享数据、主容器传进去。
+      把创建的登录界面作为“卡片”加入到主容器。
+      拿到 mainWorkArea 的布局控制器（强制转型）。
+      切换到下一张卡片
+        */
+    LoginScreen ls = new LoginScreen(mainWorkArea,supplierDirectory);
+    mainWorkArea.add("LoginScreen",ls);
+    CardLayout layout = (CardLayout)mainWorkArea.getLayout();
+    layout.next(mainWorkArea);//括号内只是代表在哪个容器中切换面板
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JPanel mainWorkArea;
     // End of variables declaration//GEN-END:variables
 }

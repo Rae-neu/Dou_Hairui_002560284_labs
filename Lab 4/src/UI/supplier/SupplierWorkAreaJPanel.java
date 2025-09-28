@@ -26,19 +26,102 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSplitPane1 = new javax.swing.JSplitPane();
+        manuBar = new javax.swing.JPanel();
+        lblWelcome = new javax.swing.JLabel();
+        btnProductCatalog = new javax.swing.JButton();
+        btnUpdateProfile = new javax.swing.JButton();
+        btnManageStaff = new javax.swing.JButton();
+        btnPerformance = new javax.swing.JButton();
+        btnLogOut = new javax.swing.JButton();
+        workArea = new javax.swing.JPanel();
+
+        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        manuBar.setBackground(new java.awt.Color(255, 102, 102));
+
+        lblWelcome.setText("<Welcome Msg>");
+
+        btnProductCatalog.setText("Product Catalog");
+
+        btnUpdateProfile.setText("Update Profile");
+
+        btnManageStaff.setText("Manage Staff");
+
+        btnPerformance.setText("Performance");
+
+        btnLogOut.setText("Log Out");
+
+        javax.swing.GroupLayout manuBarLayout = new javax.swing.GroupLayout(manuBar);
+        manuBar.setLayout(manuBarLayout);
+        manuBarLayout.setHorizontalGroup(
+            manuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manuBarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblWelcome)
+                .addGap(18, 18, 18)
+                .addComponent(btnProductCatalog)
+                .addGap(18, 18, 18)
+                .addComponent(btnUpdateProfile)
+                .addGap(18, 18, 18)
+                .addComponent(btnManageStaff)
+                .addGap(18, 18, 18)
+                .addComponent(btnPerformance)
+                .addGap(18, 18, 18)
+                .addComponent(btnLogOut)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        manuBarLayout.setVerticalGroup(
+            manuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manuBarLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(manuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblWelcome)
+                    .addComponent(btnProductCatalog)
+                    .addComponent(btnUpdateProfile)
+                    .addComponent(btnManageStaff)
+                    .addComponent(btnPerformance)
+                    .addComponent(btnLogOut))
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+
+        jSplitPane1.setLeftComponent(manuBar);
+
+        workArea.setBackground(new java.awt.Color(255, 204, 204));
+        workArea.setLayout(new java.awt.CardLayout());
+        jSplitPane1.setRightComponent(workArea);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 600, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnManageStaff;
+    private javax.swing.JButton btnPerformance;
+    private javax.swing.JButton btnProductCatalog;
+    private javax.swing.JButton btnUpdateProfile;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel lblWelcome;
+    private javax.swing.JPanel manuBar;
+    private javax.swing.JPanel workArea;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String toString(){
+        return "Supplier";
+    }
 }
