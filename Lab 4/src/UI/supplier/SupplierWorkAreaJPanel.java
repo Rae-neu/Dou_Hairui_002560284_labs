@@ -61,10 +61,25 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         btnUpdateProfile.setText("Update Profile");
+        btnUpdateProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateProfileActionPerformed(evt);
+            }
+        });
 
         btnManageStaff.setText("Manage Staff");
+        btnManageStaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageStaffActionPerformed(evt);
+            }
+        });
 
         btnPerformance.setText("Performance");
+        btnPerformance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerformanceActionPerformed(evt);
+            }
+        });
 
         btnLogOut.setText("Log Out");
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +163,18 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) mainWorkArea.getLayout();
         layout.previous(mainWorkArea);
     }//GEN-LAST:event_btnLogOutActionPerformed
+
+    private void btnUpdateProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateProfileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUpdateProfileActionPerformed
+
+    private void btnManageStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageStaffActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnManageStaffActionPerformed
+
+    private void btnPerformanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerformanceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPerformanceActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -38,6 +38,7 @@ public class LoginScreen extends javax.swing.JPanel {
         populateRoleCombo();//初始化页面上的下拉框数据
         populateSupplierCombo();
         updateSupplierVisibility();
+
     }
 
     /**
@@ -154,7 +155,7 @@ public class LoginScreen extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JComboBox<String> cbxChooseRole;
-    private javax.swing.JComboBox<String> cmbSelectSupplier;
+    private javax.swing.JComboBox<Model.Supplier> cmbSelectSupplier;
     private javax.swing.JLabel lblChooseRole;
     private javax.swing.JLabel lblSelectSupplier;
     // End of variables declaration//GEN-END:variables
@@ -175,7 +176,7 @@ public class LoginScreen extends javax.swing.JPanel {
 
     public void populateSupplierCombo() {
         //清空下拉框旧数据，避免重复添加。
-        cbxSelectSupplier.removeAllItems();
+        cmbSelectSupplier.removeAllItems();
         
         /*从supplierDirectory.getSupplierList()取出每一个Supplier对象，依次命名为supplier。
           把供应商对象添加到下拉框。*/

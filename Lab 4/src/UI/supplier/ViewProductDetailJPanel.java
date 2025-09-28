@@ -4,10 +4,13 @@
  */
 package UI.supplier;
 
+import Model.Feature;
 import Model.Product;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -191,11 +194,24 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
     private void btnAddFeatureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddFeatureActionPerformed
         // TODO add your handling code here:
-
+        Feature newFeature = product.addNewFeature(product);
+        newFeature.setName("New Feature");
+        newFeature.setValue("Type Value Here");
+        
+        saveFeatures();
+        refreshTable();
     }//GEN-LAST:event_btnAddFeatureActionPerformed
 
     private void btnRemoveFeatureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveFeatureActionPerformed
         // TODO add your handling code here:
+        saveFeatures();
+        int selectedRow = tblFeatures.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(this,"Please select a row");
+            return;
+        }
+        product.getFeatures().remove(selectedRow);
+        refreshTable();
 
     }//GEN-LAST:event_btnRemoveFeatureActionPerformed
 
@@ -216,6 +232,20 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        product.setName(txtName.getText());
+        product.setPrice(Integer.parseInt(txtPrice.getText()));
+        saveFeatures();
+        
+        txtName.setEditable(false);
+        txtPrice.setEditable(false);
+        btnSave.setEnabled(false);
+        tblFeatures.setEnabled(false);
+        btnAddFeature.setEnabled(false);
+        btnRemoveFeature.setEnabled(false);
+        
+        JOptionPane.showMessageDialog(this, "Product Information saved!");
+        
+        refreshTable();
 
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -238,7 +268,15 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void refreshTable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        DefaultTableModel model = (DefaultTableModel)tblFeatures.getModel();
+        model.setRowCount(0);
+        
+        for(Feature f: product.getFeatures()){
+            Object row[] = new Object[2];
+            row[0] = f;
+            row[1] = f.getValue()==null?"Empty":f.getValue().toString();
+            model.addRow(row);
+        }
     }
 
     private void backAction() {
@@ -250,5 +288,14 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
         manageProductCatalogJPanel.refreshTable();
         CardLayout layout = (CardLayout) workArea.getLayout();
         layout.previous(workArea);
+    }
+    
+    private void saveFeatures(){
+        DefaultTableModel model = (DefaultTableModel)tblFeatures.getModel();
+        for(int i = 0; i<model.getRowCount();i++){
+        Feature currentFeature = product.getFeatures().get(i);
+        currentFeature.setName(tblFeatures.getValueAt(i,0).toString());
+        currentFeature.setValue(tblFeatures.getValueAt(i,1));
+    }
     }
 }

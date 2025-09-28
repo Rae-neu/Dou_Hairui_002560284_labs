@@ -106,16 +106,25 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Update Profile"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateProfileActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnManageStaff">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Manage Staff"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageStaffActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnPerformance">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Performance"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPerformanceActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnLogOut">
               <Properties>

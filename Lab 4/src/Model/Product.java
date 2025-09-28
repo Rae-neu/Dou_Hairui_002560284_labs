@@ -4,6 +4,8 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Eve Dou
@@ -16,13 +18,31 @@ public class Product {
       【静态的】意味着count这个变量存在于Product整个类本身，而不是某一个具体的对象，所有Product对象共享这一个count。*/
     private static int count = 0;
     
+     private ArrayList<Feature> features;
+    
     /*每创建一个新产品，count就+1，然后把这个新count赋值给这个产品的id。
       ++是自增运算符，count++等价于count = count+1。*/
     public Product(){
         count++;
         id = count;
+        
+        features = new ArrayList<>();
     }
 
+    public ArrayList<Feature> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(ArrayList<Feature> features) {
+        this.features = features;
+    }
+
+    public Feature addNewFeature(Product p){
+        Feature feature = new Feature(p);
+        features.add(feature);
+        return feature;
+    }
+    
     public String getName() {
         return name;
     }
