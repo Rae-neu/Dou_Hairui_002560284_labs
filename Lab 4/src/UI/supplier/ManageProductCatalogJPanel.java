@@ -4,17 +4,42 @@
  */
 package UI.supplier;
 
+import Model.Product;
+import Model.Supplier;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Eve Dou
  */
 public class ManageProductCatalogJPanel extends javax.swing.JPanel {
-
+    JPanel workArea;
+    Supplier supplier;
     /**
      * Creates new form ManageProductCatalogJPanel
      */
-    public ManageProductCatalogJPanel() {
+    public ManageProductCatalogJPanel(JPanel workArea, Supplier supplier) {
         initComponents();
+        this.workArea = workArea;
+        this.supplier = supplier;
+       
+        refreshTable();
+    }
+    
+    public void refreshTable() {
+
+        DefaultTableModel model = (DefaultTableModel) tblProducts.getModel();
+        model.setRowCount(0);
+
+        for (Product p : supplier.getProductCatalog().getProductCatalog()) {
+            Object row[] = new Object[3];
+            row[0] = p;
+            row[1] = p.getId();
+            row[2] = p.getPrice();
+            model.addRow(row);
+        }
     }
 
     /**
@@ -28,7 +53,7 @@ public class ManageProductCatalogJPanel extends javax.swing.JPanel {
 
         lblTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblProduct = new javax.swing.JTable();
+        tblProducts = new javax.swing.JTable();
         btnSearch = new javax.swing.JButton();
         btnAddProduct = new javax.swing.JButton();
         btnViewDetails = new javax.swing.JButton();
@@ -39,7 +64,7 @@ public class ManageProductCatalogJPanel extends javax.swing.JPanel {
         lblTitle.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         lblTitle.setText("Manage Product Catalog");
 
-        tblProduct.setModel(new javax.swing.table.DefaultTableModel(
+        tblProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -50,11 +75,16 @@ public class ManageProductCatalogJPanel extends javax.swing.JPanel {
                 "Product Name", "Product ID", "Price"
             }
         ));
-        jScrollPane1.setViewportView(tblProduct);
+        jScrollPane1.setViewportView(tblProducts);
 
         btnSearch.setText("Search");
 
         btnAddProduct.setText("Add Product");
+        btnAddProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddProductActionPerformed(evt);
+            }
+        });
 
         btnViewDetails.setText("View Details");
 
@@ -106,6 +136,14 @@ public class ManageProductCatalogJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProductActionPerformed
+        // TODO add your handling code here:
+        CreateNewProductJPanel cnpjp = new CreateNewProductJPanel(workArea, supplier);
+        workArea.add("SupplierWorkAreaJPanel", cnpjp);
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.next(workArea);
+    }//GEN-LAST:event_btnAddProductActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddProduct;
@@ -114,6 +152,8 @@ public class ManageProductCatalogJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnViewDetails;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JTable tblProduct;
+    private javax.swing.JTable tblProducts;
     // End of variables declaration//GEN-END:variables
+
+    
 }

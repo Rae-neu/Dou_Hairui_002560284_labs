@@ -4,17 +4,24 @@
  */
 package UI.supplier;
 
+import Model.Supplier;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Eve Dou
  */
 public class SearchProductJPanel extends javax.swing.JPanel {
-
+    JPanel workArea;
+    Supplier supplier;
     /**
      * Creates new form SearchProductJPanel
      */
-    public SearchProductJPanel() {
+    public SearchProductJPanel(JPanel workArea, Supplier supplier) {
         initComponents();
+        this.workArea = workArea;
+        this.supplier = supplier;
     }
 
     /**
@@ -97,6 +104,9 @@ public class SearchProductJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        workArea.remove(this);
+        CardLayout layout = (CardLayout)workArea.getLayout();
+        layout.previous(workArea);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

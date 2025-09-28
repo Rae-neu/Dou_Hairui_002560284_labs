@@ -4,17 +4,47 @@
  */
 package UI.administrator;
 
+import Model.Supplier;
+import Model.SupplierDirectory;
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.awt.Image;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author Eve Dou
  */
 public class AddSupplierJPanel extends javax.swing.JPanel {
-
+    private JPanel workArea;
+    private SupplierDirectory supplierDirectory;
+    
+    private final JFileChooser fileChooser = new JFileChooser();
+    ImageIcon logoImage;
     /**
      * Creates new form AddSupplierJPanel
      */
-    public AddSupplierJPanel() {
+    public AddSupplierJPanel(JPanel workArea, SupplierDirectory supplierDirectory) {
         initComponents();
+        this.workArea = workArea;
+        this.supplierDirectory = supplierDirectory;
+        
+        FileFilter jpegFilter = new FileNameExtensionFilter("JPEG file","jpg","jpeg");
+        FileFilter pngFilter = new FileNameExtensionFilter("PNG file","png");
+        
+        fileChooser.addChoosableFileFilter(jpegFilter);
+        fileChooser.addChoosableFileFilter(pngFilter);
+        fileChooser.setFileFilter(pngFilter);
     }
 
     /**
@@ -161,20 +191,44 @@ public class AddSupplierJPanel extends javax.swing.JPanel {
 
     private void btnAttachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttachActionPerformed
         // TODO add your handling code here:
+        int returnVal = fileChooser.showOpenDialog(this);
+        
+        if(returnVal == JFileChooser.APPROVE_OPTION){
+            File file = fileChooser.getSelectedFile();
+            URL url;
+            try {
+                url = file.toURI().toURL();
+                logoImage = new ImageIcon(url);
+                logoImage = new ImageIcon(logoImage.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH));
+                
+                imgLogo.setIcon(logoImage);
+            }catch(MalformedURLException ex){
+                Logger.getLogger(this.getName()).log(Level.SEVERE,null,ex);
+            }
+        }
 
     }//GEN-LAST:event_btnAttachActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         // TODO add your handling code here:
+        logoImage = null;
+        imgLogo.setIcon(logoImage);
 
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnAddSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSupplierActionPerformed
         // TODO add your handling code here:
+        Supplier supplier = supplierDirectory.addSupplier();
+        supplier.setSupplyName(txtName.getText());
+        supplier.setLogoImage(logoImage);
+        
+        JOptionPane.showMessageDialog(this,"Supplier successfully added","Warning",JOptionPane.INFORMATION_MESSAGE);
+        backAction();
     }//GEN-LAST:event_btnAddSupplierActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
+        backAction();
     }//GEN-LAST:event_backButtonActionPerformed
 
 
@@ -192,4 +246,14 @@ public class AddSupplierJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
+
+     private void backAction() {
+        workArea.remove(this);
+        Component[] componentArray = workArea.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ManageSuppliersJPanel manageSuppliersJPanel = (ManageSuppliersJPanel) component;
+        manageSuppliersJPanel.refreshTable();
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.previous(workArea);
+    }
 }

@@ -4,19 +4,40 @@
  */
 package UI.administrator;
 
+import Model.Supplier;
+import Model.SupplierDirectory;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Eve Dou
  */
 public class ManageSuppliersJPanel extends javax.swing.JPanel {
-
+    private JPanel userProcessContainer;
+    private SupplierDirectory supplierDirectory;
     /**
      * Creates new form ManageSuppliersJPanel
      */
-    public ManageSuppliersJPanel() {
+    public ManageSuppliersJPanel(JPanel upc, SupplierDirectory sd) {
         initComponents();
+        userProcessContainer = upc;
+        supplierDirectory = sd;
+        refreshTable();
     }
 
+    public void refreshTable(){
+        DefaultTableModel model = (DefaultTableModel)tblSuppliers.getModel();
+        model.setRowCount(0);
+        
+        for(Supplier s : supplierDirectory.getSupplierList()){
+            Object row[] = new Object[1];
+            row[0] = s;
+            model.addRow(row);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -118,11 +139,19 @@ public class ManageSuppliersJPanel extends javax.swing.JPanel {
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         // TODO add your handling code here:
+        
+        
 
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
+        int row = tblSuppliers.getSelectedRow();
+        if(row<0){
+            JOptionPane.showMessageDialog(null,"Please select a row from the table first","Warning",JOptionPane.WARNING_MESSAGE);
+            return;
+            
+        }
 
     }//GEN-LAST:event_btnViewActionPerformed
 
@@ -130,6 +159,10 @@ public class ManageSuppliersJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         //int i=1;
+        AddSupplierJPanel as = new AddSupplierJPanel(userProcessContainer,supplierDirectory);
+        userProcessContainer.add("AddSupplier",as);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAddActionPerformed
 
 
@@ -141,4 +174,5 @@ public class ManageSuppliersJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblSupplierList;
     private javax.swing.JTable tblSuppliers;
     // End of variables declaration//GEN-END:variables
+
 }

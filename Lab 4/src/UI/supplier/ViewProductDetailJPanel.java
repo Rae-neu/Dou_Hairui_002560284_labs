@@ -4,17 +4,31 @@
  */
 package UI.supplier;
 
+import Model.Product;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Eve Dou
  */
 public class ViewProductDetailJPanel extends javax.swing.JPanel {
-
+    JPanel workArea;
+    Product product;
     /**
      * Creates new form ViewProductDetailJPanel
      */
-    public ViewProductDetailJPanel() {
+    public ViewProductDetailJPanel(JPanel workArea, Product product) {
         initComponents();
+        this.workArea = workArea;
+        this.product = product;
+
+        txtName.setText(this.product.getName());
+        txtId.setText(String.valueOf(this.product.getId()));
+        txtPrice.setText(String.valueOf(this.product.getPrice()));
+
+        refreshTable();
     }
 
     /**
@@ -187,10 +201,17 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        txtName.setEditable(true);
+        txtPrice.setEditable(true);
+        btnSave.setEnabled(true);
+        tblFeatures.setEnabled(true);
+        btnAddFeature.setEnabled(true);
+        btnRemoveFeature.setEnabled(true);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void backButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton1ActionPerformed
         // TODO add your handling code here:
+        backAction();
     }//GEN-LAST:event_backButton1ActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -215,4 +236,19 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPrice;
     // End of variables declaration//GEN-END:variables
+
+    private void refreshTable() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void backAction() {
+
+        workArea.remove(this);
+        Component[] componentArray = workArea.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ManageProductCatalogJPanel manageProductCatalogJPanel = (ManageProductCatalogJPanel) component;
+        manageProductCatalogJPanel.refreshTable();
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.previous(workArea);
+    }
 }

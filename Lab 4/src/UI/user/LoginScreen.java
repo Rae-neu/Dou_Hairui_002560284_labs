@@ -173,7 +173,7 @@ public class LoginScreen extends javax.swing.JPanel {
         cbxChooseRole.add(supplierPanel);
     }
 
-    private void populateSupplierCombo() {
+    public void populateSupplierCombo() {
         //清空下拉框旧数据，避免重复添加。
         cbxSelectSupplier.removeAllItems();
         

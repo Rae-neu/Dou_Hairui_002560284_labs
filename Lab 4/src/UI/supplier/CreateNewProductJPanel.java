@@ -4,17 +4,27 @@
  */
 package UI.supplier;
 
+import Model.Product;
+import Model.Supplier;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Eve Dou
  */
 public class CreateNewProductJPanel extends javax.swing.JPanel {
-
+    Supplier supplier;
+    JPanel workArea;
     /**
      * Creates new form CreateNewProductJPanel
      */
-    public CreateNewProductJPanel() {
+    public CreateNewProductJPanel(JPanel workArea, Supplier supplier) {
         initComponents();
+        this.supplier = supplier;
+        this.workArea = workArea;
     }
 
     /**
@@ -113,11 +123,21 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        backAction();
 
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+        Product product = supplier.getProductCatalog().addProduct();
+        product.setName(txtName.getText());
+        String stringPrice = txtPrice.getText();
+        if (stringPrice.isEmpty() == false) {
+            int price = Integer.parseInt(stringPrice);
+            product.setPrice(price);
+        }
+        JOptionPane.showMessageDialog(this, "Product successfully added", "Information", JOptionPane.INFORMATION_MESSAGE);
+        backAction();
     }//GEN-LAST:event_btnAddActionPerformed
 
 
@@ -132,4 +152,14 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPrice;
     // End of variables declaration//GEN-END:variables
+
+     private void backAction() {
+        workArea.remove(this);
+        Component[] componentArray = workArea.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ManageProductCatalogJPanel manageProductCatalogJPanel = (ManageProductCatalogJPanel) component;
+        manageProductCatalogJPanel.refreshTable();
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.previous(workArea);
+    }
 }

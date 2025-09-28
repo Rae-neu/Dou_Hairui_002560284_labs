@@ -4,17 +4,28 @@
  */
 package UI.administrator;
 
+import Model.SupplierDirectory;
+import UI.user.LoginScreen;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Eve Dou
  */
 public class AdminWorkAreaJPanel extends javax.swing.JPanel {
-
+    JPanel mainWorkArea;
+    SupplierDirectory supplierDirectory;
     /**
      * Creates new form AdminWorkAreaJPanel
      */
-    public AdminWorkAreaJPanel() {
+    public AdminWorkAreaJPanel(JPanel mainWorkArea, SupplierDirectory supplierDirectory) {
         initComponents();
+        this.mainWorkArea = mainWorkArea;
+        this.supplierDirectory = supplierDirectory;
+        
+        lblWelcome.setText("Welcome to Lab 4!");
     }
 
     /**
@@ -31,7 +42,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         lblWelcome = new javax.swing.JLabel();
         btnManageSuppliers = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        workArea = new javax.swing.JPanel();
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
@@ -79,10 +90,10 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jSplitPane1.setLeftComponent(jPanel1);
 
-        jPanel2.setBackground(new java.awt.Color(102, 51, 0));
-        jPanel2.setForeground(new java.awt.Color(242, 242, 242));
-        jPanel2.setLayout(new java.awt.CardLayout());
-        jSplitPane1.setRightComponent(jPanel2);
+        workArea.setBackground(new java.awt.Color(102, 51, 0));
+        workArea.setForeground(new java.awt.Color(242, 242, 242));
+        workArea.setLayout(new java.awt.CardLayout());
+        jSplitPane1.setRightComponent(workArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -102,11 +113,24 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageSuppliersActionPerformed
         // TODO add your handling code here:
+        ManageSuppliersJPanel panel = new ManageSuppliersJPanel(workArea,supplierDirectory);
+        workArea.add("ManageSuppliersAdministrative",panel);
+        CardLayout layout = (CardLayout)workArea.getLayout();
+        layout.next(workArea);
 
     }//GEN-LAST:event_btnManageSuppliersActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
+        mainWorkArea.remove(this);
+        
+        Component[]componentArray = mainWorkArea.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        LoginScreen loginPanel = (LoginScreen)component;
+        loginPanel.populateSupplierCombo();
+        
+        CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+        layout.previous(mainWorkArea);
 
     }//GEN-LAST:event_btnLogOutActionPerformed
 
@@ -115,9 +139,9 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnManageSuppliers;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lblWelcome;
+    private javax.swing.JPanel workArea;
     // End of variables declaration//GEN-END:variables
 
     @Override
