@@ -1,26 +1,28 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
-package UI.administrator;
+package ui.admin;
 
-import Model.Product;
-import Model.Supplier;
+import model.Product;
+import model.Supplier;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Eve Dou
+ * @author EveDou
  */
-public class ViewSupplierJPanel extends javax.swing.JPanel {
+public class ViewSupplier extends javax.swing.JPanel {
+
     JPanel workArea;
     Supplier supplier;
+    
     /**
-     * Creates new form ViewSupplierJPanel
+     * Creates new form ViewSupplier
      */
-    public ViewSupplierJPanel(JPanel workArea, Supplier supplier) {
+    public ViewSupplier(JPanel workArea, Supplier supplier) {
         initComponents();
         this.workArea = workArea;
         this.supplier = supplier;
@@ -28,6 +30,7 @@ public class ViewSupplierJPanel extends javax.swing.JPanel {
         lblSupplierName.setText(supplier.getSupplyName());
         
         refreshTable();
+        
     }
     
     private void refreshTable() {
@@ -58,9 +61,8 @@ public class ViewSupplierJPanel extends javax.swing.JPanel {
         productCatalog = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(102, 0, 153));
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        lblSupplierName.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         lblSupplierName.setText("<Supplier Name>");
 
         productCatalog.setModel(new javax.swing.table.DefaultTableModel(
@@ -96,25 +98,27 @@ public class ViewSupplierJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addComponent(btnBack)
-                        .addGap(195, 195, 195)
+                        .addGap(34, 34, 34)
                         .addComponent(lblSupplierName))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSupplierName)
                     .addComponent(btnBack))
-                .addGap(49, 49, 49)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addContainerGap(248, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -123,9 +127,7 @@ public class ViewSupplierJPanel extends javax.swing.JPanel {
         workArea.remove(this);
         CardLayout layout = (CardLayout)workArea.getLayout();
         layout.previous(workArea);
-
     }//GEN-LAST:event_btnBackActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -133,6 +135,4 @@ public class ViewSupplierJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblSupplierName;
     private javax.swing.JTable productCatalog;
     // End of variables declaration//GEN-END:variables
-
-  
 }
