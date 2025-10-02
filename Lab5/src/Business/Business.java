@@ -7,6 +7,7 @@ package Business;
 
 import Business.Person.PersonDirectory;
 import Business.Profiles.EmployeeDirectory;
+import Business.Profiles.FacultyDirectory;
 import Business.Profiles.StudentDirectory;
 
 import Business.UserAccounts.UserAccountDirectory;
@@ -19,7 +20,7 @@ public class Business {
 
     String name;
     PersonDirectory persondirectory; //存放所有人的基本信息（无论 Student/Admin/Faculty）
-
+    FacultyDirectory facultydirectory;
     EmployeeDirectory employeedirectory;//管理Admin角色的Profile
     UserAccountDirectory useraccountdirectory;//存放所有系统账号（用户名 + 密码 + Profile）
     StudentDirectory studentdirectory;//专门管理Student的Profile
@@ -33,7 +34,7 @@ public class Business {
         employeedirectory = new EmployeeDirectory(this);
         useraccountdirectory = new UserAccountDirectory();
         studentdirectory = new StudentDirectory();
-
+        facultydirectory = new FacultyDirectory();
 
     }
 
@@ -55,4 +56,9 @@ public class Business {
         return studentdirectory;
     }
 
+    public FacultyDirectory getFacultydirectory() {
+        return facultydirectory;
+    }
+
+    
 }
