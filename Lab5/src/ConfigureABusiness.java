@@ -10,6 +10,8 @@ import Business.Person.Person;
 import Business.Person.PersonDirectory;
 import Business.Profiles.EmployeeDirectory;
 import Business.Profiles.EmployeeProfile;
+import Business.Profiles.FacultyDirectory;
+import Business.Profiles.FacultyProfile;
 import Business.Profiles.StudentDirectory;
 import Business.Profiles.StudentProfile;
 
@@ -26,9 +28,11 @@ class ConfigureABusiness {
     static Business initialize() {
         Business business = new Business("Information Systems");
 
-// Create Persons
+    // Create Persons
       PersonDirectory persondirectory = business.getPersonDirectory();
-// person representing sales organization        
+    // person representing sales organization   
+
+    //创建了多个Person（person001~person009）
         Person person001 = persondirectory.newPerson("John Smith");
         Person person002 = persondirectory.newPerson("Gina Montana");
         Person person003 = persondirectory.newPerson("Adam Rollen");
@@ -38,22 +42,28 @@ class ConfigureABusiness {
         Person person007 = persondirectory.newPerson("Laura Brown");
         Person person008 = persondirectory.newPerson("Jack While");
         Person person009 = persondirectory.newPerson("Fidelity"); //we use this as customer
+        Person person010 = persondirectory.newPerson("Rae");//创建Faculty的Person。
+    // Create Admins to manage the business
 
-// Create Admins to manage the business
+    //创建了EmployeeDirectory并添加了Admin。
         EmployeeDirectory employeedirectory = business.getEmployeeDirectory();
         EmployeeProfile employeeprofile0 = employeedirectory.newEmployeeProfile(person001);
         
+    //创建了StudentDirectory并添加了一个学生。
         StudentDirectory studentdirectory = business.getStudentDirectory();
         StudentProfile studentprofile0 = studentdirectory.newStudentProfile(person003);
         
-
-
+    //创建FacultyDirectory并添加一名教员。
+        FacultyDirectory facultydirectory = business.getFacultydirectory();
+        FacultyProfile facultyprofile0 = facultydirectory.newFacultyProfile(person010);
    
-// Create User accounts that link to specific profiles
+    // Create User accounts that link to specific profiles
+        //
         UserAccountDirectory uadirectory = business.getUserAccountDirectory();
-        UserAccount ua3 = uadirectory.newUserAccount(employeeprofile0, "admin", "****"); /// order products for one of the customers and performed by a sales person
-        UserAccount ua4 = uadirectory.newUserAccount(studentprofile0, "adam", "****"); /// order products for one of the customers and performed by a sales person
-
+        UserAccount ua3 = uadirectory.newUserAccount(employeeprofile0, "Administer", "12345"); /// order products for one of the customers and performed by a sales person
+        UserAccount ua4 = uadirectory.newUserAccount(studentprofile0, "Student", "12345"); /// order products for one of the customers and performed by a sales person
+        //创建用户名和密码
+        UserAccount ua5 = uadirectory.newUserAccount(facultyprofile0,"Rae", "12345");
         return business;
 
     }

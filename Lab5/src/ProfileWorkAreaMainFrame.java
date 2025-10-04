@@ -6,6 +6,7 @@
 package Business;
 
 import Business.Profiles.EmployeeProfile;
+import Business.Profiles.FacultyProfile;
 import Business.Profiles.Profile;
 import Business.Profiles.StudentProfile;
 
@@ -32,8 +33,7 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
     public ProfileWorkAreaMainFrame() {
         initComponents();
         business = ConfigureABusiness.initialize();
-        
-
+    //调用我们之前写的ConfigureABusiness.initialize()方法来创建并预置数据（包括 Admin/Student/Faculty 用户）。
     }
 
     public void insert(JPanel jpanel) {
@@ -132,48 +132,63 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         //      WorkAreaJPanel ura = new WorkAreaJPanel(workareajpanl);
 
+        //获取用户输入的用户名和密码。
         String un = UserNameTextField.getText();
         String pw = PasswordTextField.getText();
 
+        //拿到系统中所有的账号信息。
         UserAccountDirectory uad = business.getUserAccountDirectory();
-        UserAccount useraccount = uad.AuthenticateUser(un, pw);
+        UserAccount useraccount = uad.AuthenticateUser(un, pw);//验证用户名密码。
         if (useraccount == null) {
-            return;
+            return;//如果没找到，返回 null，直接退出方法（return），不做任何后续跳转。
         }
+        
+        //声明工作区面板变量，这些是稍后要根据用户角色来切换的界面。
+        //暂时只是“声明”，还没创建对象。
         StudentWorkAreaJPanel studentworkareajpanel;
         FacultyWorkAreaJPanel facultyworkarea;
         AdminRoleWorkAreaJPanel adminworkarea;
-        String r = useraccount.getRole();
-        Profile profile = useraccount.getAssociatedPersonProfile();
+        
+        //从UserAccount拿到角色和 Profile，为后续界面跳转做准备。
+        String r = useraccount.getRole();//只是标记用户属于哪种角色名称，例："Faculty"
+        Profile profile = useraccount.getAssociatedPersonProfile();//包含Person对象、角色信息、行为方法等，例：new FacultyProfile(person010)
 
 
-        if (profile instanceof EmployeeProfile) {
+        //「Admin登录后，跳转到Admin工作区界面」
+        if (profile instanceof EmployeeProfile) {//如果这个人登录的Profile是EmployeeProfile类型。
 
+            /*创建一个新的 Swing 面板（JPanel），它就是管理员登陆后的主界面。
+              传进去两个参数：①business全局的业务数据对象 ②CardSequencePanel右边的“内容区”容器，用来切换界面。
+              这样在AdminRoleWorkAreaJPanel里就能访问业务数据 + 控制界面跳转了。*/
             adminworkarea = new AdminRoleWorkAreaJPanel(business, CardSequencePanel);
-            CardSequencePanel.removeAll();
-            CardSequencePanel.add("Admin", adminworkarea);
-            ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+            
+            CardSequencePanel.removeAll();//清空右边显示区域，防止多个工作区面板叠在一起，保证每次登录都只显示当前这个用户的工作区。
+            CardSequencePanel.add("Admin", adminworkarea);//把刚刚创建的AdminRoleWorkAreaJPanel放进CardSequencePanel容器里。
+            ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);//.next(container) 会翻到下一个卡片（上行add的Admin面板）。
 
         }
         
-        if (profile instanceof StudentProfile) {
-
-            StudentProfile spp = (StudentProfile) profile;
-            studentworkareajpanel = new StudentWorkAreaJPanel(business, spp, CardSequencePanel);
+        // 跳转到学生工作区页面
+        if (profile instanceof StudentProfile) {//判断Profile类型是否为StudenProfile。
+            
+            //因为学生界面通常需要知道“是哪位学生”，所以要把StudentProfile spp传进去。而管理员界面往往是全局操作，不依赖某一个具体人。
+            StudentProfile spp = (StudentProfile) profile;//向下转型（downcasting）：父类引用→转成子类→使用子类的能力
+            
+            studentworkareajpanel = new StudentWorkAreaJPanel(business, spp, CardSequencePanel);//创建学生工作区界面面板
             CardSequencePanel.removeAll();
             CardSequencePanel.add("student", studentworkareajpanel);
             ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 
         }
 
- /*      if (profile instanceof FacultyProfile) {
+        //跳转教职工界面
+      if (profile instanceof FacultyProfile) {
             facultyworkarea = new FacultyWorkAreaJPanel(business, CardSequencePanel);
             CardSequencePanel.removeAll();
             CardSequencePanel.add("faculty", facultyworkarea);
             ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 
         }
-*/
 
     }//GEN-LAST:event_LoginButtonActionPerformed
 
