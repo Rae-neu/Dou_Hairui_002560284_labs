@@ -44,7 +44,7 @@ import javax.swing.JPanel;
         txtName = new javax.swing.JTextField();
         lblUserName1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(204, 204, 255));
+        setBackground(new java.awt.Color(153, 153, 255));
 
         lblUserName.setText("User Name:");
 
