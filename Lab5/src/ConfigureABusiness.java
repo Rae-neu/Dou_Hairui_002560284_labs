@@ -63,7 +63,7 @@ class ConfigureABusiness {
         UserAccount ua3 = uadirectory.newUserAccount(employeeprofile0, "Administer", "12345"); /// order products for one of the customers and performed by a sales person
         UserAccount ua4 = uadirectory.newUserAccount(studentprofile0, "Student", "12345"); /// order products for one of the customers and performed by a sales person
         //创建用户名和密码
-        UserAccount ua5 = uadirectory.newUserAccount(facultyprofile0,"Rae", "12345");
+        UserAccount ua5 = uadirectory.newUserAccount(facultyprofile0,"Faculty", "12345");
         return business;
 
     }
